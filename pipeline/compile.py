@@ -1,4 +1,4 @@
-from kfp.v2 import compiler
+from kfp import compiler
 from pipeline import customer_spend_pipeline
 
 if __name__ == "__main__":

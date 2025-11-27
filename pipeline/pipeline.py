@@ -1,6 +1,6 @@
 from kfp import dsl
-from google_cloud_pipeline_components.v1.custom_job import CustomTrainingJobOp
-from google_cloud_pipeline_components.v1.batch_prediction_job import ModelBatchPredictOp
+from google_cloud_pipeline_components import aiplatform as gcc_aiplatform
+
 from kfp.v2.dsl import Output, Dataset
 from .components import merge_predictions
 
@@ -19,7 +19,7 @@ def customer_spend_pipeline(
     pipeline_root = f"gs://{pipeline_bucket}/pipeline-root"
 
     # ----- Training -----
-    train_task = CustomTrainingJobOp(
+    train_task = gcc_aiplatform.CustomTrainingJobOp(
         display_name="customer-spend-train",
         script_path="trainer/task.py",
         container_uri="us-docker.pkg.dev/vertex-ai/training/scikit-learn-cpu",
@@ -31,7 +31,7 @@ def customer_spend_pipeline(
     )
 
     # ----- Batch prediction -----
-    batch_task = ModelBatchPredictOp(
+    batch_task = gcc_aiplatform.ModelBatchPredictOp(
         model=train_task.outputs["model"],
         job_display_name="customer-spend-batch",
         gcs_source_uris=[input_uri],
