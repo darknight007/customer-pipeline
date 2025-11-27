@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+
+# Environments
+.venv/
+venv/
+env/
+
+# macOS
+.DS_Store
+
+# Notebook
+.ipynb_checkpoints/
+
+# Vertex AI pipeline run / root
+pipeline_root/
+pipeline-root/
+artifacts/
+
+# Data
+data/
+datasets/
+output/
+
+# Google Cloud SDK (accidental!)
+google-cloud-sdk/
