@@ -8,5 +8,6 @@ if __name__ == "__main__":
             package_path="customer_pipeline.json"
     )
     print("Compilation successful!")
-except Exception as e:
+    
+    except Exception as e:
     print(f"Compilation failed: {e}")
